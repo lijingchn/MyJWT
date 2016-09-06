@@ -1,0 +1,25 @@
+
+1. 首先是授权：
+url = "http://localhost:5000"
+resp = requests.get("{}/api/auth".format(url))
+print resp.text
+
+[output]:
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlJlbmFpc3NhbmNlIERldiIsImlhdCI6MTQ1OTc2ODU1MSwicm9sZSI6InN1cGVyX2FkbWluIiwiZXhwIjoxNDU5NzcyMTUxfQ.mOJwfxhADCfC89uUytXCS7AJSkkmPPSU0z9lcdj5ZAE
+
+
+
+2. 然后使用这个 Token 去访问api:
+resp = requests.get("{}/api/jwt".format(url), 
+                headers={'Authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlJlbmFpc3NhbmNlIERldiIsImlhdCI6MTQ1OTc2ODQ0Mywicm9sZSI6InN1cGVyX2FkbWluIiwiZXhwIjoxNDU5NzcyMDQzfQ.rR4uqNe77F4RkvbSGSVWCa5WBPfcz-tav9r_AAIRMhk'})
+print resp.text
+
+[output]:
+{
+      "exp": 1473142286, 
+      "iat": 1473138686, 
+      "role": "super_admin", 
+      "username": "lijing"
+}
+
+
